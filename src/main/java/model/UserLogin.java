@@ -15,10 +15,13 @@ public class UserLogin {
     @Column(name = "password", columnDefinition = "TEXT")
     private String password;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
     @Column(name = "salt_password", columnDefinition = "TEXT")
     private String saltPassword;
 
-    @Column(name = "user_name", columnDefinition = "TEXT", unique = true)
+    @Column(name = "user_name")
     private String userName;
 
 }

@@ -17,7 +17,6 @@ public class UserResource {
     UserService userService;
 
     @POST
-    @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response registerUser(String jsonUser) {
