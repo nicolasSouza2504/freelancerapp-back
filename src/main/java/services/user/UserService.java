@@ -60,7 +60,7 @@ public class UserService {
                 UtilErrorRest.throwResponseError("User name is required");
             }
 
-            UserLogin userSaved = userRepository.findByUserName(userLogin.getUserName());
+            UserLogin userSaved = userRepository.findByEmail(userLogin.getEmail());
 
             if (userSaved != null) {
                 UtilErrorRest.throwResponseError("User already exists");

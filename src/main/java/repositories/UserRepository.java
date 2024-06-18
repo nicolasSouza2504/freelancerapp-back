@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import model.UserLogin;
+import org.apache.commons.lang3.StringUtils;
 
 @ApplicationScoped
 public class UserRepository {
@@ -14,14 +15,20 @@ public class UserRepository {
     EntityManager entityManager;
 
     @Transactional
-    public UserLogin findByUserName(String userName) {
+    public UserLogin findByEmail(String email) {
 
-        return entityManager.createQuery("SELECT u FROM UserLogin u WHERE UPPER(u.userName) = :userName", UserLogin.class)
-                .setParameter("userName", userName.toUpperCase())
-                .getResultList()
-                .stream()
-                .findFirst()
-                .orElse(null);
+        if (StringUtils.isNotEmpty(email)) {
+
+            return entityManager.createQuery("SELECT u FROM UserLogin u WHERE UPPER(u.email) = :email", UserLogin.class)
+                    .setParameter("email", email.toUpperCase())
+                    .getResultList()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+        } else {
+            return null;
+        }
 
     }
 

@@ -30,7 +30,7 @@ public class LoginService {
 
         validateLogin(userLogin);
 
-        UserLogin userDb = userRepository.findByUserName(userLogin.getUserName());
+        UserLogin userDb = userRepository.findByEmail(userLogin.getEmail());
 
         if (userDb != null) {
 
@@ -76,8 +76,8 @@ public class LoginService {
                 UtilErrorRest.throwResponseError("Password is required");
             }
 
-            if (StringUtils.isEmpty(userLogin.getUserName())) {
-                UtilErrorRest.throwResponseError("User name is required");
+            if (StringUtils.isEmpty(userLogin.getEmail())) {
+                UtilErrorRest.throwResponseError("Email is required");
             }
 
         } else {
