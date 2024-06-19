@@ -12,6 +12,8 @@ import repositories.UserRepository;
 import services.redis.RedisService;
 import utils.UtilErrorRest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -25,6 +27,8 @@ public class LoginService {
 
     @Transactional
     public Session login(String jsonUser) {
+
+        List<String> validations = new ArrayList<>();
 
         UserLogin userLogin = new Gson().fromJson(jsonUser, UserLogin.class);
 

@@ -53,21 +53,29 @@ public class UserService {
         if (userLogin != null) {
 
             if (StringUtils.isEmpty(userLogin.getPassword())) {
-                UtilErrorRest.throwResponseError("Password is required");
+                UtilErrorRest.throwResponseError("Informe a senha!");
             }
 
             if (StringUtils.isEmpty(userLogin.getUserName())) {
-                UtilErrorRest.throwResponseError("User name is required");
+                UtilErrorRest.throwResponseError("Informe o nome!");
+            }
+
+            if (StringUtils.isEmpty(userLogin.getEmail())) {
+                UtilErrorRest.throwResponseError("Informe o email!");
+            }
+
+            if (StringUtils.isEmpty(userLogin.getCpfCnpj())) {
+                UtilErrorRest.throwResponseError("Informe o Cnpj/Cpf!");
             }
 
             UserLogin userSaved = userRepository.findByEmail(userLogin.getEmail());
 
             if (userSaved != null) {
-                UtilErrorRest.throwResponseError("User already exists");
+                UtilErrorRest.throwResponseError("Usuário ja cadastrado!");
             }
 
         } else {
-            UtilErrorRest.throwResponseError("Password and name are required");
+            UtilErrorRest.throwResponseError("Preencha todos os campos!");
         }
 
     }
