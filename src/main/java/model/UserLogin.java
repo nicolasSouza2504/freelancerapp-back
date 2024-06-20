@@ -24,7 +24,7 @@ public class UserLogin {
     @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "cpf_cnpj", length = 11)
+    @Column(name = "cpf_cnpj")
     private String cpfCnpj;
 
 }

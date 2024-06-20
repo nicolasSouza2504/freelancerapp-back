@@ -12,6 +12,9 @@ import model.UserLogin;
 import repositories.UserRepository;
 import utils.UtilErrorRest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ApplicationScoped
 public class UserService {
 
@@ -50,33 +53,37 @@ public class UserService {
     @Transactional
     public void validateUser(UserLogin userLogin) {
 
+        List<String> validations = new ArrayList<>();
+
         if (userLogin != null) {
 
             if (StringUtils.isEmpty(userLogin.getPassword())) {
-                UtilErrorRest.throwResponseError("Informe a senha!");
+                validations.add("Informe a senha!");
             }
 
             if (StringUtils.isEmpty(userLogin.getUserName())) {
-                UtilErrorRest.throwResponseError("Informe o nome!");
+                validations.add("Informe o nome!");
             }
 
             if (StringUtils.isEmpty(userLogin.getEmail())) {
-                UtilErrorRest.throwResponseError("Informe o email!");
+                validations.add("Informe o email!");
             }
 
             if (StringUtils.isEmpty(userLogin.getCpfCnpj())) {
-                UtilErrorRest.throwResponseError("Informe o Cnpj/Cpf!");
+                validations.add("Informe o Cnpj/Cpf!");
             }
 
             UserLogin userSaved = userRepository.findByEmail(userLogin.getEmail());
 
             if (userSaved != null) {
-                UtilErrorRest.throwResponseError("Usuário ja cadastrado!");
+                validations.add("Usuário ja cadastrado!");
             }
 
         } else {
-            UtilErrorRest.throwResponseError("Preencha todos os campos!");
+            validations.add("Preencha todos os campos!");
         }
+
+        UtilErrorRest.throwResponseError(validations, 400);
 
     }
 

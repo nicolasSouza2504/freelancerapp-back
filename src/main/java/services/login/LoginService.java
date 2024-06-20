@@ -49,11 +49,11 @@ public class LoginService {
                 return session;
 
             } else {
-                UtilErrorRest.throwResponseError("Wrong password");
+                UtilErrorRest.throwResponseError("Senha incorreta!");
             }
 
         } else {
-            UtilErrorRest.throwResponseError("User Not Found", 404);
+            UtilErrorRest.throwResponseError("Usuário não encontrado!", 404);
         }
 
         return null;

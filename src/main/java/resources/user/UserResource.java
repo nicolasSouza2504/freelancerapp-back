@@ -1,5 +1,6 @@
 package resources.user;
 
+import com.google.gson.Gson;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -23,7 +24,7 @@ public class UserResource {
 
         UserLogin user = userService.save(jsonUser);
 
-        return Response.ok(user).status(200).build();
+        return Response.ok(new Gson().toJson(user)).status(200).build();
 
     }
 
