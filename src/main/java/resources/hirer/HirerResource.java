@@ -38,4 +38,5 @@ public class HirerResource {
         return Response.ok("Hirer has been saved with success").status(200).build();
 
     }
+
 }
