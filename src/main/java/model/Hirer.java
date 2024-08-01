@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "hirer")
-public class Hirer extends DefaultEntity{
+public class Hirer extends GenericEntity {
 
     @Column(name = "cpf_cnpj")
     private String cpfCnpj;

@@ -5,11 +5,9 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import dto.ServerSession;
 import model.Hirer;
 import repositories.HirerRepository;
-import services.HirerService;
-import utils.ResponseDto;
+import services.hirer.HirerService;
 
 @Path("/hirer")
 public class HirerResource {
@@ -33,7 +31,11 @@ public class HirerResource {
 
         Hirer hirer = new Gson().fromJson(jsonHirer, Hirer.class);
 
-        hirerService.save(hirer);
+        if (hirer.getId() != null) {
+            hirerService.update(hirer);
+        } else {
+            hirerService.save(hirer);
+        }
 
         return Response.ok("Hirer has been saved with success").status(200).build();
 
