@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import model.Hirer;
+import repositories.HirerRepository;
 import services.GenericService;
 
 @ApplicationScoped
@@ -13,6 +14,9 @@ public class HirerService extends GenericService {
     @Inject
     EntityManager manager;
 
+    @Inject
+    HirerRepository hirerRepository;
+
     @Transactional
     public void save(Hirer hirer) {
         manager.persist(hirer);
@@ -20,7 +24,16 @@ public class HirerService extends GenericService {
 
     @Transactional
     public void update(Hirer hirer) {
-        manager.merge(hirer);
+        merge(hirer);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Hirer hirer = hirerRepository.findById(id);
+
+        manager.remove(hirer);
+
     }
 
 }

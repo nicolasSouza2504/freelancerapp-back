@@ -19,7 +19,7 @@ public class GenericService {
 
         entity.setUpdatedAt(new Date());
 
-        manager.persist(entity);
+        manager.merge(entity);
 
     }
 

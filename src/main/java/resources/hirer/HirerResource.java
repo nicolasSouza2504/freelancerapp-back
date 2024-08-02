@@ -41,4 +41,16 @@ public class HirerResource {
 
     }
 
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response delete(@PathParam("id") Long id) {
+
+        hirerService.delete(id);
+
+        return Response.ok("Hirer has been saved with success").status(200).build();
+
+    }
+
 }

@@ -30,7 +30,23 @@ public class GenericEntity {
     private Long userLoginId;
 
     @PrePersist
+    public void prePersist() {
+
+        setCreatedAt(new Date());
+
+        setProperties();
+
+    }
+
     @PreUpdate
+    public void preUpdate() {
+
+        setUpdatedAt(new Date());
+
+        setProperties();
+
+    }
+
     public void setProperties() {
 
         if (userLoginId == null) {

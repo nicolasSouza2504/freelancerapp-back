@@ -26,4 +26,16 @@ public class HirerRepository {
 
     }
 
+    @Transactional
+    public Hirer findById(Long id) {
+
+        Long userId = ServerSession.getSession().getUserId();
+
+        return entityManager.createQuery("SELECT h FROM Hirer h WHERE h.userLoginId = :userId AND h.id = :id", Hirer.class)
+                .setParameter("userId", userId)
+                .setParameter("id", id)
+                .getSingleResult();
+
+    }
+
 }
